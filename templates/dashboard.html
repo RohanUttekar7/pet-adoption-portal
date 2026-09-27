@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}My Dashboard{% endblock %}
+{% block content %}
+<h1>My Dashboard</h1>
+<p>Welcome, {{ current_user.name if current_user else "Pet Owner" }}!</p>
+<h2>My Pet Listings</h2>
+{% for pet in pets %}<div><h3>{{ pet.name }}</h3><p>{{ pet.type }} - {{ pet.status }}</p></div>{% else %}<p>No pets listed yet.</p>{% endfor %}
+<p><a href="{{ url_for('add_pet') }}">Add a Pet</a></p>
+<h2>My Adoption Requests</h2>
+{% for request in my_requests %}<p>{{ request.pet_name }} - {{ request.status }}</p>{% else %}<p>No adoption requests yet.</p>{% endfor %}
+<h2>Requests for My Pets</h2>
+{% for request in received_requests %}<p>{{ request.pet_name }} - {{ request.applicant_name }} - {{ request.status }}</p>{% else %}<p>No requests for your pets yet.</p>{% endfor %}
+{% endblock %}
