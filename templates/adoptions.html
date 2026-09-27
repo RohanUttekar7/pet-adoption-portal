@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Adoption Requests{% endblock %}
+{% block content %}
+<h1>Adoption Requests</h1>
+{% if requests %}
+<div class="table-wrap">
+  <table class="table">
+    <thead><tr><th>ID</th><th>Pet</th><th>Applicant Name</th><th>Email</th><th>Phone</th><th>Reason</th><th>Status</th></tr></thead>
+    <tbody>
+    {% for r in requests %}
+      <tr>
+        <td>{{ r.id }}</td>
+        <td>{{ r.pet_name }}</td>
+        <td>{{ r.applicant_name }}</td>
+        <td>{{ r.email }}</td>
+        <td>{{ r.phone }}</td>
+        <td>{{ r.reason }}</td>
+        <td><span class="badge pending">{{ r.status }}</span></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+  <p class="empty">No adoption requests yet. <a href="{{ url_for('pets') }}">Find a pet to adopt</a>.</p>
+{% endif %}
+{% endblock %}

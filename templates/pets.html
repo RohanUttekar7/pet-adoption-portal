@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Available Pets{% endblock %}
+{% block content %}
+<h1>Available Pets</h1>
+<form class="filters" method="get" action="{{ url_for('pets') }}">
+  <label>Search Pets
+    <input type="text" name="search" value="{{ search }}" placeholder="Pet name">
+  </label>
+  <label>Type
+    <select name="type">
+      <option value="">All</option>
+      {% for t in pet_types %}<option value="{{ t }}" {{ 'selected' if t == selected_type }}>{{ t }}</option>{% endfor %}
+    </select>
+  </label>
+  <label>Location
+    <select name="location">
+      <option value="">All</option>
+      {% for l in locations %}<option value="{{ l }}" {{ 'selected' if l == selected_location }}>{{ l }}</option>{% endfor %}
+    </select>
+  </label>
+  <button class="btn" type="submit">Search</button>
+</form>
+{% if pets %}
+  <div class="grid">{% for pet in pets %}{% include "_pet_card.html" %}{% endfor %}</div>
+{% else %}
+  <p class="empty">No pets match your search. <a href="{{ url_for('pets') }}">Clear filters</a>.</p>
+{% endif %}
+{% endblock %}

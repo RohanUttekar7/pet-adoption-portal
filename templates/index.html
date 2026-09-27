@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Find Your New Best Friend ❤️</h1>
+  <p>Give a loving pet a happy and safe home.</p>
+  <a class="btn btn-light" href="{{ url_for('pets') }}">Browse Available Pets</a>
+</section>
+<h2>Pets waiting for a home</h2>
+{% if pets %}
+  <div class="grid">{% for pet in pets %}{% include "_pet_card.html" %}{% endfor %}</div>
+{% else %}
+  <p class="empty">No pets are available right now. <a href="{{ url_for('add_pet') }}">Add a pet</a>.</p>
+{% endif %}
+{% endblock %}

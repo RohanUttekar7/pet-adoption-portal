@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ pet.name }}{% endblock %}
+{% block content %}
+<a class="back" href="{{ url_for('pets') }}">← Back to Available Pets</a>
+<section class="details">
+  <div class="details-img">
+    {% if pet.image_url %}<img src="{{ pet.image_url }}" alt="{{ pet.name }}" data-type="{{ pet.type|emoji }}">
+    {% else %}<span class="ph">{{ pet.type|emoji }}</span>{% endif %}
+  </div>
+  <div>
+    <h1>{{ pet.name }} <span class="badge {{ 'ok' if pet.status == 'Available' else 'off' }}">{{ pet.status }}</span></h1>
+    <table class="info">
+      <tr><th>Type</th><td>{{ pet.type }}</td></tr>
+      <tr><th>Breed</th><td>{{ pet.breed }}</td></tr>
+      <tr><th>Age</th><td>{{ pet.age }} year{{ '' if pet.age == 1 else 's' }}</td></tr>
+      <tr><th>Gender</th><td>{{ pet.gender }}</td></tr>
+      <tr><th>Location</th><td>{{ pet.location }}</td></tr>
+    </table>
+    <p>{{ pet.description or 'No description provided.' }}</p>
+    {% if pet.status == 'Available' %}
+      <a class="btn" href="{{ url_for('adopt', pet_id=pet.id) }}">Request Adoption</a>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

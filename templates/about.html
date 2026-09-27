@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<section class="about">
+  <h1>About Pet Adoption Portal</h1>
+  <p>Pet Adoption Portal helps pets find loving, permanent homes. Instead of buying a pet, people can meet animals that are already waiting for a family.</p>
+  <h2>How it works</h2>
+  <ol>
+    <li>Browse available pets, or search by name, type and location.</li>
+    <li>Open a pet's page to read about them.</li>
+    <li>Fill in the adoption request form.</li>
+    <li>Your request is saved with the status "Pending" until it is reviewed.</li>
+  </ol>
+  <p>Shelters and pet owners can also add pets using the Add Pet page.</p>
+  <p class="owner"><strong>Project Owner: {{ owner }}</strong></p>
+</section>
+{% endblock %}

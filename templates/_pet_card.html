@@ -1,0 +1,17 @@
+<article class="card">
+  <a class="card-img" href="{{ url_for('pet_details', pet_id=pet.id) }}">
+    {% if pet.image_url %}<img src="{{ pet.image_url }}" alt="{{ pet.name }}" loading="lazy" data-type="{{ pet.type|emoji }}">
+    {% else %}<span class="ph">{{ pet.type|emoji }}</span>{% endif %}
+  </a>
+  <div class="card-body">
+    <h3>{{ pet.name }} <span class="badge {{ 'ok' if pet.status == 'Available' else 'off' }}">{{ pet.status }}</span></h3>
+    <ul class="facts">
+      <li>{{ pet.type }} · {{ pet.breed }}</li>
+      <li>{{ pet.age }} yr{{ '' if pet.age == 1 else 's' }} · {{ pet.gender }}</li>
+      <li>📍 {{ pet.location }}</li>
+    </ul>
+    {% if pet.status == 'Available' %}
+      <a class="btn" href="{{ url_for('adopt', pet_id=pet.id) }}">Request Adoption</a>
+    {% endif %}
+  </div>
+</article>
