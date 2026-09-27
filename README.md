@@ -1,178 +1,132 @@
-\# Pet Adoption Portal
+# Pet Adoption Portal
 
+**Project Owner:** Rohan Uttekar
+**PRN:** 1272250909
+**Course:** Cloud Computing and DevOps (CSE30040)
+**Project:** CCA 2 – Individual Project
 
+## Project Overview
 
-\*\*Project Owner:\*\* Rohan Uttekar
+The Pet Adoption Portal is a Flask-based web application that allows users to browse available pets, add pets for adoption, and submit adoption requests. It uses SQLite for data storage and includes automated testing, Docker support, and CI/CD deployment.
 
-\*\*Course:\*\* Cloud Computing and DevOps (CSE30040)
+## Features
 
-\*\*Project:\*\* CCA 2 – Individual Project
+* Home page displaying available pets
+* Browse and search available pets
+* Add pets with input validation
+* Submit adoption requests
+* View adoption requests
+* JSON APIs for pets and adoption requests
+* Health-check endpoint
+* Footer displaying the deployed Git commit ID
 
+## Technologies Used
 
+* Python and Flask
+* SQLite
+* HTML, CSS and JavaScript
+* Pytest
+* Flake8
+* Docker
+* Git and GitHub Actions
+* Render
 
-\## Project Overview
+## Run Locally
 
+1. Clone the repository:
 
+   ```bash
+   git clone https://github.com/RohanUttekar7/pet-adoption-portal.git
+   ```
 
-The Pet Adoption Portal is a Flask-based web application that allows users to browse available pets, add pets for adoption, and submit adoption requests.
+2. Navigate to the project directory:
 
+   ```bash
+   cd pet-adoption-portal
+   ```
 
+3. Create a virtual environment:
 
-\## Features
+   ```bash
+   python -m venv venv
+   ```
 
+4. Activate the virtual environment on Windows:
 
+   ```powershell
+   .\venv\Scripts\Activate.ps1
+   ```
 
-\* Home page displaying available pets
+5. Install dependencies:
 
-\* Browse and search available pets
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-\* Add pets with input validation
+6. Start the application:
 
-\* Submit adoption requests
+   ```bash
+   python app.py
+   ```
 
-\* View adoption requests
+7. Open the application in your browser:
 
-\* JSON APIs for pets and adoption requests
+   `http://127.0.0.1:5000`
 
-\* Health-check endpoint
+## Testing
 
-\* Footer displaying the deployed Git commit ID
+Run the automated tests:
 
+```bash
+python -m pytest -q
+```
 
+Run linting with Flake8:
 
-\## Technologies Used
+```bash
+python -m flake8 --max-line-length=120 --exclude=venv,.pytest_cache,__pycache__ .
+```
 
-
-
-\* Python and Flask
-
-\* SQLite
-
-\* HTML, CSS and JavaScript
-
-\* Pytest
-
-\* Flake8
-
-\* Docker
-
-\* Git and GitHub Actions
-
-\* Render
-
-
-
-\## Run Locally
-
-
-
-1\. Clone the repository.
-
-
-
-2\. Create and activate a Python virtual environment.
-
-
-
-3\. Install dependencies:
-
-
-
-&#x20;  `pip install -r requirements.txt`
-
-
-
-4\. Start the application:
-
-
-
-&#x20;  `python app.py`
-
-
-
-5\. Open `http://127.0.0.1:5000` in your browser.
-
-
-
-\## Testing
-
-
-
-Run automated tests:
-
-
-
-`python -m pytest -q`
-
-
-
-Run linting:
-
-
-
-`python -m flake8 --max-line-length=120 --exclude=venv,.pytest\_cache,\_\_pycache\_\_ .`
-
-
-
-\## API Endpoints
-
-
+## API Endpoints
 
 | Endpoint         | Description                       |
-
 | ---------------- | --------------------------------- |
-
 | `/health`        | Application health check          |
-
 | `/api/pets`      | Returns pet data in JSON          |
-
 | `/api/adoptions` | Returns adoption requests in JSON |
 
-
-
-\## Docker
-
-
+## Docker
 
 Build the Docker image:
 
-
-
-`docker build -t pet-adoption-portal .`
-
-
+```bash
+docker build -t pet-adoption-portal .
+```
 
 Run the container:
 
+```bash
+docker run -p 5000:5000 pet-adoption-portal
+```
 
+Open `http://127.0.0.1:5000` to access the application.
 
-`docker run -p 5000:5000 pet-adoption-portal`
+## CI/CD
 
+GitHub Actions automates the following tasks:
 
+* Runs automated tests using Pytest.
+* Checks code quality using Flake8.
+* Builds the Docker image and performs a smoke test.
+* Deploys the application to Render when the required checks pass on the main branch.
 
-\## CI/CD
+## Deployment
 
+**Live Application:** https://pet-adoption-portal-phb1.onrender.com
 
+**GitHub Repository:** https://github.com/RohanUttekar7/pet-adoption-portal
 
-GitHub Actions will run automated tests, linting and Docker checks. Deployment to Render will be triggered from the main branch after the required checks pass.
+## Author
 
-
-
-\## Deployment
-
-
-
-\*\*Live URL:\*\* To be added after deployment.
-
-
-
-\## Author
-
-
-
-Rohan Uttekar
-
+**Rohan Uttekar**
 B.Tech – Computer Science and Engineering
-
-
-
