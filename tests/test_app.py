@@ -1,4 +1,3 @@
-
 import pytest
 
 import database as db
@@ -14,7 +13,6 @@ def client():
 
 def test_health(client):
     response = client.get("/health")
-
     assert response.status_code == 200
     assert response.get_json() == {"status": "ok"}
 
@@ -30,7 +28,6 @@ def test_add_pet_invalid_name(client):
         "description": "Friendly dog",
         "image_url": ""
     })
-
     assert response.status_code == 200
     assert b"Pet name must be 2-50 characters." in response.data
 
@@ -43,7 +40,6 @@ def test_add_pet_valid(client, monkeypatch):
         return 999
 
     monkeypatch.setattr(db, "add_pet", fake_add_pet)
-
     response = client.post("/add-pet", data={
         "name": "Buddy",
         "type": "Dog",
@@ -54,7 +50,6 @@ def test_add_pet_valid(client, monkeypatch):
         "description": "Friendly dog",
         "image_url": ""
     })
-
     assert response.status_code == 302
     assert response.headers["Location"].endswith("/pets")
     assert calls["args"][0] == "Buddy"
@@ -62,7 +57,6 @@ def test_add_pet_valid(client, monkeypatch):
 
 def test_pets_api_returns_json(client):
     response = client.get("/api/pets")
-
     assert response.status_code == 200
     assert response.is_json
     assert isinstance(response.get_json(), list)
@@ -70,12 +64,6 @@ def test_pets_api_returns_json(client):
 
 def test_adoptions_api_returns_json(client):
     response = client.get("/api/adoptions")
-
     assert response.status_code == 200
     assert response.is_json
     assert isinstance(response.get_json(), list)
-
-
-def test_failure_demo(client):
-    response = client.get("/health")
-    assert response.status_code == 500
