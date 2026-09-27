@@ -74,3 +74,8 @@ def test_adoptions_api_returns_json(client):
     assert response.status_code == 200
     assert response.is_json
     assert isinstance(response.get_json(), list)
+
+
+def test_failure_demo(client):
+    response = client.get("/health")
+    assert response.status_code == 500
